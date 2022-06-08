@@ -118,14 +118,19 @@ plt.show()
 
 
 ```
-from sklearn.metrics import silhouette_score
+#silhouette_score 
+```
+ 
+``` 
+from sklearn.metrics import silhouette_score 
 score = silhouette_score(var_thres_clean,kmeans.labels_,metric='euclidean')
 
 #Print the score
 
-print('Silhoutte Score: %.3f'%score)  
- 
+print('Silhoutte Score: %.3f'%score)
 ```
+ 
+ 
 <p>Silhoutte Score: 0.750</p>
 
 <p>PyTorch'u kuralım.</p>
@@ -147,6 +152,7 @@ cluster_ids_x, cluster_centers = kmeans(
     X=torch_var_thres_clean, num_clusters=2, distance='euclidean'
 )
 ```
+
 <p>running k-means on cpu..</p>
 <p>[running kmeans]: 3it [00:00,  6.36it/s, center_shift=0.000000, iteration=3, tol=0.000100]</p>
 
