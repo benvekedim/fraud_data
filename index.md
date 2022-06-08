@@ -1,37 +1,77 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/benvekedim/fraud_data/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Fraud Data Analysis
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Yazar: Mustafa Eroğlu
 
-### Markdown
+Tarih: 8 Haziran 2022
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<p>
+<p>Bu projede Amerika'daki firmaların muhasabe verileri içeren fınal veri seti ile çalıştım.
+KMeans,Pytorch ve VarianceThreshold kullanarak analiz yaptım.</p>
+</p>
 
-```markdown
-Syntax highlighted code block
+<p> Veri setini görelim</p>
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+fraud_data
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+![image](/img/frauddata.png)
 
-### Jekyll Themes
+<p>fraud_data null değer içerdiği temizliyoruz.</p>
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/benvekedim/fraud_data/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```
+cleaned_fraud_data = fraud_data.dropna(axis=1)
+cleaned_fraud_data
+```
+![image](/img/cleanedfrauddata.png)
 
-### Support or Contact
+<p>Temizlediğimiz verinin saçılım grafiğini çizdirelim.</p>
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```
+plt.figure(figsize = (12, 9))
+plt.scatter(cleaned_ap, cleaned_sale)
+plt.xlabel('ap')
+plt.ylabel('sale')
+plt.title('Visualization of data')
+
+```
+
+![image](/img/rawdata.png)
+
+<p>StandardScaler ve KMeans algoritmasını uyguyalım.</p>
+
+<p>Verinin saçılım grafiğini çizdirelim.</p>
+
+```
+plt.figure(figsize=(10,8))
+sns.scatterplot(cleaned_ap,cleaned_sale,hue=df_fraud_label['fraud-or-not'],palette=['g','b'])
+plt.title('Fraud Analysis')
+plt.show()
+```
+![image](/img/kmeansfraud.png)
+
+<p>Silhouette skorunu hesaplayalım.</p>
+
+```
+from sklearn.metrics import silhouette_score
+score = silhouette_score(df_cleaned,kmeans.labels_,metric='euclidean')
+
+#Print the score
+
+print('Silhoutte Score: %.3f'%score)
+```
+
+<p>Silhoutte Score: 0.918</p>
+
+<p>Temizlediğimiz veriyi tekrardan gözden geçirelim.</p>
+
+
+
+
+
+
+
+<p>Okuduğunuz için teşekkürler </p>
+
+
